@@ -65,6 +65,10 @@ public class PowerUp : MonoBehaviour {
 		type = wt;
 	}
 
+	public void AbsorbedBy(GameObject target){
+		Destroy (this.gameObject);
+	}
+
 	void CheckOffscreen() {
 		if (Utils.ScreenBoundsCheck (cube.collider.bounds, BoundsTest.offScreen)
 			!= Vector3.zero) {
