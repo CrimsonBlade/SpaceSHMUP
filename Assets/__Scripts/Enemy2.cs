@@ -6,7 +6,7 @@ public class Enemy2 : Enemy {
 	public Vector3[] points;
 	public float birthTime;
 	public float lifeTime = 10;
-	public float sinEccentricity = 0.6f;;
+	public float sinEccentricity = 0.6f;
 	
 
 	
@@ -34,23 +34,15 @@ public class Enemy2 : Enemy {
 	}
 	
 	public override void Move(){
+		float u = (Time.time - birthTime) / lifeTime;
+		if (u > 1) {
+			Destroy (this.gameObject);
+			return;
+		}
+		u = u + sinEccentricity * (Mathf.Sin (u * Mathf.PI * 2));
+		pos = (1 - u) * points [0] + u * points [1];
 
-		//start here
-		Vector3 tempPos = pos;
-		float age = Time.time - birthTime;
-		float theta = Mathf.PI * 2 * age / waveFrequency;
-		float sin = Mathf.Sin (theta);
-		tempPos.x = x0 + waveWidth * sin;
-		pos = tempPos;
-		
-		Vector3 rot = new Vector3 (0, sin * waveRotY, 0);
-		this.transform.rotation = Quaternion.Euler (rot);
-		base.Move ();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
 

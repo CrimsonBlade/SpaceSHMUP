@@ -67,13 +67,14 @@ public class Hero : MonoBehaviour {
 		GameObject go = Utils.FindTaggedParent (other.gameObject);
 		if (go != null) {
 			//print ("Triggered: " + go.name);
+			if(go == lastTriggerGo)
 			return;
 		} 
 		lastTriggerGo = go;
 
 		if (go.tag == "Enemy") {
 			shieldLevel--;
-			Destroy (go);
+			Destroy(go);
 		} else if (go.tag == "PowerUp") {
 			AbsorbPowerUp(go);
 		}
