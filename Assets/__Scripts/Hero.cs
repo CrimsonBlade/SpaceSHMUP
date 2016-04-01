@@ -49,7 +49,8 @@ public class Hero : MonoBehaviour {
 		// constrain to screen
 		Vector3 off = Utils.ScreenBoundsCheck(bounds,BoundsTest.onScreen);
 		if (off != Vector3.zero) {  // we need to move ship back on screen
-			pos -= off;
+			pos.y -= off.y;
+			pos.x -= off.x;
 			transform.position = pos;
 		}
 		
