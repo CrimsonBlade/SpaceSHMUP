@@ -80,21 +80,21 @@ public class Emeny4 : Enemy {
 			if (prtHit.protectedBy != null) {
 				foreach(string s in prtHit.protectedBy)
 				{
-					if (!Destroy(s)){
+					if (!Destroyed(s)){
 						Destroy(other);
 						return;
 					}
 				}
 			}
 
-			prtHit.health -= Main.W_DEFS [pos.type].damageOnHit;
+			prtHit.health -= Main.W_DEFS [p.type].damageOnHit;
 			ShowLocalizedDanage (prtHit.mat);
 			if (prtHit.health <= 0) {
 				prtHit.go.SetActive(false);		
 			}
 			bool allDestroyed = true;
 			foreach (Part prt in parts) {
-				if(!Destroy(prt)){
+				if(!Destroyed(prt)){
 					allDestroyed = false;
 					break;
 				}		
@@ -109,7 +109,7 @@ public class Emeny4 : Enemy {
 	}
 
 	Part FindPart(string n){
-		foreach(part prt in parts){
+		foreach(Part prt in parts){
 			if(prt.name == n){
 				return(prt);
 			}
@@ -117,7 +117,7 @@ public class Emeny4 : Enemy {
 		return(null);
 	}
 	Part FindPart(GameObject go){
-		foreach(part prt in parts){
+		foreach(Part prt in parts){
 			if (prt.go == go){
 				return(prt);
 			}
